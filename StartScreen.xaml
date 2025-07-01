@@ -1,21 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Shooter_Game.MainPage">
+             x:Class="Shooter_Game.MainPage"
+             BackgroundImageSource="menu_background.jpg">
     <ScrollView>
         <VerticalStackLayout>
+            <HorizontalStackLayout Margin="40"/>
             <HorizontalStackLayout HorizontalOptions="Center">
-                <VerticalStackLayout>
-                    <Label Text="Shooter Game"></Label>
-                    <Label Text="by James Nagle"></Label>
-                </VerticalStackLayout>
+                <Button x:Name="Settings_Button"
+                        Text="⚙"
+                        Clicked="Settings_Button_Clicked"
+                        Margin="5"/>
+                <Button x:Name="SaveLoad_Button"
+                        Text="Save/Load"
+                        Clicked="SaveLoad_Button_Clicked"
+                        Margin="5"/>
+                <Button x:Name="Start_Button"
+                        Text="Start Game"
+                        Clicked="Start_Button_Clicked"
+                        Margin="5"/>
+                <Button x:Name="Stats_Button"
+                        Text="Stats"
+                        Clicked="Stats_Button_Clicked"
+                        Margin="5"/>
+                <Button x:Name="Shop_Button"
+                        Text="Shop"
+                        Clicked="Shop_Button_Clicked"
+                        Margin="5"/>
             </HorizontalStackLayout>
             <HorizontalStackLayout HorizontalOptions="Center">
-                <Button Text="⚙"></Button>
-                <Button Text="Save/Load"></Button>
-                <Button Text="Start Game"></Button>
-                <Button Text="Stats"></Button>
-                <Button Text="Invest Gold"></Button>
+                <Button x:Name="Catalogue_Button"
+                        Text="Weapon and Power-Uo Catalogue"
+                        Clicked="Catalogue_Button_Clicked"
+                        Margin="5"/>
+                <Button x:Name="Credits_Button"
+                        Text="Credits"
+                        Clicked="Credits_Button_Clicked"
+                        Margin="5"/>
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
