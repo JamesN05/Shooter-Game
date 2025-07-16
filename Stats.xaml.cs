@@ -1,8 +1,8 @@
 namespace Shooter_Game;
 
-public partial class GamePage : ContentPage
+public partial class Stats : ContentPage
 {
-	public GamePage()
+	public Stats()
 	{
 		InitializeComponent();
 	}

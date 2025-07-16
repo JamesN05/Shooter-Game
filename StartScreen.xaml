@@ -5,16 +5,24 @@
              BackgroundImageSource="menu_background.jpg">
     <ScrollView>
         <VerticalStackLayout>
-            <HorizontalStackLayout Margin="40"/>
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Margin="40">
+                <Label Text="Shooter Game"
+                           FontSize="50"/>
+            </HorizontalStackLayout>
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Button x:Name="Settings_Button"
                         Text="⚙"
                         Clicked="Settings_Button_Clicked"
-                        Margin="5"/>
+                        Margin="5"
+                        Background="SaddleBrown"/>
                 <Button x:Name="SaveLoad_Button"
                         Text="Save/Load"
                         Clicked="SaveLoad_Button_Clicked"
-                        Margin="5"/>
+                        Margin="5"
+                        Background="SaddleBrown"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"/>
                 <Button x:Name="Start_Button"
                         Text="Start Game"
                         Clicked="Start_Button_Clicked"
@@ -30,7 +38,7 @@
             </HorizontalStackLayout>
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Button x:Name="Catalogue_Button"
-                        Text="Weapon and Power-Uo Catalogue"
+                        Text="Weapons and Power-Ups Catalogue"
                         Clicked="Catalogue_Button_Clicked"
                         Margin="5"/>
                 <Button x:Name="Credits_Button"

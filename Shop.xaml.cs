@@ -1,8 +1,8 @@
 namespace Shooter_Game;
 
-public partial class GamePage : ContentPage
+public partial class Shop : ContentPage
 {
-	public GamePage()
+	public Shop()
 	{
 		InitializeComponent();
 	}

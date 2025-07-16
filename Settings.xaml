@@ -10,6 +10,10 @@
                     Text="Back Home"
                     Clicked="Return_Button_Clicked"/>
         </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Settings"
+                   FontSize="50"/>
+        </HorizontalStackLayout>
         <HorizontalStackLayout>
             
         </HorizontalStackLayout>

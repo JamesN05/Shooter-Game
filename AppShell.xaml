@@ -11,5 +11,4 @@
         Title="Shooter Game by James Nagle"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-
 </Shell>
