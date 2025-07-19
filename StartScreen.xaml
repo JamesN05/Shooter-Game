@@ -5,46 +5,117 @@
              BackgroundImageSource="menu_background.jpg">
     <ScrollView>
         <VerticalStackLayout>
+            <HorizontalStackLayout Margin="20"/>
             <HorizontalStackLayout HorizontalOptions="Center"
                                    Margin="40">
                 <Label Text="Shooter Game"
-                           FontSize="50"/>
+                       FontSize="50"
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"/>
             </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
+            <HorizontalStackLayout Margin="40"/>
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   VerticalOptions="Center">
                 <Button x:Name="Settings_Button"
                         Text="⚙"
                         Clicked="Settings_Button_Clicked"
+                        FontSize="25"
                         Margin="5"
                         Background="SaddleBrown"/>
                 <Button x:Name="SaveLoad_Button"
                         Text="Save/Load"
                         Clicked="SaveLoad_Button_Clicked"
+                        FontSize="25"
                         Margin="5"
                         Background="SaddleBrown"
                         TextColor="LawnGreen"
-                        FontAttributes="Bold"/>
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"/>
                 <Button x:Name="Start_Button"
                         Text="Start Game"
                         Clicked="Start_Button_Clicked"
-                        Margin="5"/>
+                        FontSize="25"
+                        Margin="5"
+                        Background="SaddleBrown"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"/>
                 <Button x:Name="Stats_Button"
                         Text="Stats"
                         Clicked="Stats_Button_Clicked"
-                        Margin="5"/>
+                        FontSize="25"
+                        Margin="5"
+                        Background="SaddleBrown"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"/>
                 <Button x:Name="Shop_Button"
                         Text="Shop"
                         Clicked="Shop_Button_Clicked"
-                        Margin="5"/>
+                        FontSize="25"
+                        Margin="5"
+                        Background="SaddleBrown"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"/>
             </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   VerticalOptions="Center">
                 <Button x:Name="Catalogue_Button"
                         Text="Weapons and Power-Ups Catalogue"
                         Clicked="Catalogue_Button_Clicked"
-                        Margin="5"/>
+                        FontSize="25"
+                        Margin="5"
+                        Background="SaddleBrown"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"/>
                 <Button x:Name="Credits_Button"
                         Text="Credits"
                         Clicked="Credits_Button_Clicked"
-                        Margin="5"/>
+                        FontSize="25"
+                        Margin="5"
+                        Background="SaddleBrown"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="70"/>
+            <Grid x:Name="Tips"
+                  HorizontalOptions="Center"
+                  HeightRequest="40"
+                  WidthRequest="50"
+                  RowDefinitions="50,100"
+                  ColumnDefinitions="200">
+                <Border Grid.Row="0"
+                        Grid.Column="0"
+                        BackgroundColor="SaddleBrown"
+                        Margin="10">
+                    <Label Text="Tips"
+                           FontSize="25"
+                           TextColor="Red"
+                           FontAttributes="Bold"
+                           FontFamily="PermanentMarker"
+                           HorizontalOptions="Center"/>
+                </Border>
+                <Border Grid.Row="1"
+                        Grid.Column="0"
+                        BackgroundColor="SaddleBrown"
+                        Margin="10">
+                    <Label Text="Placeholder Tip"
+                           FontSize="18"
+                           TextColor="LawnGreen"
+                           FontAttributes="Bold"
+                           FontFamily="PermanentMarker"
+                           HorizontalOptions="Center"/>
+                </Border>
+            </Grid>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

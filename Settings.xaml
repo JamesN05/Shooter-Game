@@ -8,14 +8,118 @@
         <HorizontalStackLayout>
             <Button x:Name="Return_Button"
                     Text="Back Home"
-                    Clicked="Return_Button_Clicked"/>
+                    Clicked="Return_Button_Clicked"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="Settings"
-                   FontSize="50"/>
+                   FontSize="50"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
-        <HorizontalStackLayout>
-            
+        <HorizontalStackLayout HorizontalOptions="Center">
+             <Label Text="Difficulty"
+                    FontSize="40"
+                    TextColor="Red"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button x:Name="Easy_Button"
+                    Text="Easy"
+                    Clicked="Easy_Button_Clicked"
+                    Margin="7"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
+            <Button x:Name="Standard_Button"
+                    Text="Standard"
+                    Clicked="Standard_Button_Clicked"
+                    Margin="7"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
+            <Button x:Name="Hard_Button"
+                    Text="Hard"
+                    Clicked="Hard_Button_Clicked"
+                    Margin="7"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Text Size"
+                   FontSize="40"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   FontFamily="PermanentMarker"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button x:Name="Small_Button"
+                    Text="Small"
+                    Clicked="Small_Button_Clicked"
+                    Margin="7"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
+            <Button x:Name="Medium_Button"
+                    Text="Medium"
+                    Clicked="Medium_Button_Clicked"
+                    Margin="7"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
+            <Button x:Name="Large_Button"
+                    Text="Large"
+                    Clicked="Large_Button_Clicked"
+                    Margin="7"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Auto-Save"
+                   FontSize="40"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   FontFamily="PermanentMarker"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button x:Name="Auto_Save_Button"
+                    Text="On"
+                    Clicked="Auto_Save_Button_Clicked"
+                    Margin="7"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Tips"
+                   FontSize="40"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   FontFamily="PermanentMarker"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button x:Name="Tips_Button"
+                    Text="On"
+                    Clicked="Tips_Button_Clicked"
+                    Margin="7"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
