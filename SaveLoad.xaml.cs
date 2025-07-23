@@ -11,4 +11,19 @@ public partial class SaveLoad : ContentPage
     {
         await Navigation.PushModalAsync(new MainPage(), true);
     }
+
+    private void Save1_Button_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void Load1_Button_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void Delete1_Button_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }

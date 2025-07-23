@@ -8,14 +8,104 @@
         <HorizontalStackLayout>
             <Button x:Name="Return_Button"
                     Text="Back Home"
-                    Clicked="Return_Button_Clicked"/>
+                    Clicked="Return_Button_Clicked"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="Save/Load"
-                   FontSize="50"/>
+                   FontSize="60"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
-        <HorizontalStackLayout>
-
-        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="30"/>
+        <Grid x:Name="Saves"
+              HeightRequest="400"
+              WidthRequest="1000"
+              RowDefinitions="400"
+              ColumnDefinitions="200,200,200,200,200">
+            <Border Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="SaddleBrown"
+                    Margin="4">
+                <Label Text="Save 1"
+                       FontSize="25"
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+                <Button x:Name="Save1_Button"
+                        Text="Save"
+                        Clicked="Save1_Button_Clicked"
+                        FontSize="20"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"
+                        HorizontalOptions="Center"/>
+                <Button x:Name="Load1_Button"
+                        Text="Load"
+                        Clicked="Load1_Button_Clicked"
+                        FontSize="20"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"
+                        HorizontalOptions="Center"/>
+                <Button x:Name="Delete1_Button"
+                        Text="Delete"
+                        Clicked="Delete1_Button_Clicked"
+                        FontSize="20"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"
+                        HorizontalOptions="Center"/>
+            </Border>
+            <Border Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="SaddleBrown"
+                    Margin="4">
+                <Label Text="Save 2"
+                       FontSize="25"
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+            </Border>
+            <Border Grid.Row="0"
+                    Grid.Column="2"
+                    BackgroundColor="SaddleBrown"
+                    Margin="4">
+                <Label Text="Save 3"
+                       FontSize="25"
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+            </Border>
+            <Border Grid.Row="0"
+                    Grid.Column="3"
+                    BackgroundColor="SaddleBrown"
+                    Margin="4">
+                <Label Text="Save 4"
+                       FontSize="25"
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+            </Border>
+            <Border Grid.Row="0"
+                    Grid.Column="4"
+                    BackgroundColor="SaddleBrown"
+                    Margin="4">
+                <Label Text="Save 5"
+                       FontSize="25"
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+            </Border>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -9,12 +9,12 @@
             <HorizontalStackLayout HorizontalOptions="Center"
                                    Margin="40">
                 <Label Text="Shooter Game"
-                       FontSize="50"
+                       FontSize="70"
                        TextColor="Red"
                        FontAttributes="Bold"
                        FontFamily="PermanentMarker"/>
             </HorizontalStackLayout>
-            <HorizontalStackLayout Margin="40"/>
+            <HorizontalStackLayout Margin="30"/>
             <HorizontalStackLayout HorizontalOptions="Center"
                                    VerticalOptions="Center">
                 <Button x:Name="Settings_Button"
@@ -83,26 +83,26 @@
             </HorizontalStackLayout>
             <HorizontalStackLayout Margin="70"/>
             <Grid x:Name="Tips"
-                  HorizontalOptions="Center"
-                  HeightRequest="40"
-                  WidthRequest="50"
+                  HeightRequest="150"
+                  WidthRequest="200"
                   RowDefinitions="50,100"
                   ColumnDefinitions="200">
                 <Border Grid.Row="0"
                         Grid.Column="0"
                         BackgroundColor="SaddleBrown"
-                        Margin="10">
+                        Margin="4">
                     <Label Text="Tips"
                            FontSize="25"
                            TextColor="Red"
                            FontAttributes="Bold"
                            FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"/>
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
                 </Border>
                 <Border Grid.Row="1"
                         Grid.Column="0"
                         BackgroundColor="SaddleBrown"
-                        Margin="10">
+                        Margin="4">
                     <Label Text="Placeholder Tip"
                            FontSize="18"
                            TextColor="LawnGreen"
@@ -111,12 +111,6 @@
                            HorizontalOptions="Center"/>
                 </Border>
             </Grid>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                
-            </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                
-            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
