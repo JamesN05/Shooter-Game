@@ -10,7 +10,7 @@
             <VerticalStackLayout HorizontalOptions="Start">
                 <Image x:Name="Current_Weapon"
                        IsVisible="False"/>
-                <Label x:Name="Ammo"
+                <Label x:Name="Ammo_Count"
                        Text="28/28"
                        IsVisible="False"
                        TextColor="Gray"
@@ -36,17 +36,25 @@
             </VerticalStackLayout>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
-            <Grid x:Name="Play_Area"
-                  IsVisible="False"
-                  HeightRequest="675"
-                  WidthRequest="1600">
+            <AbsoluteLayout x:Name="Play_Area"
+                            IsVisible="False"
+                            HeightRequest="675"
+                            WidthRequest="1500"
+                            HorizontalOptions="CenterAndExpand">
+                <AbsoluteLayout.GestureRecognizers>
+                    <PointerGestureRecognizer PointerMoved="Follow_Pointer"/>
+                    <TapGestureRecognizer Tapped="Shoot"/>
+                </AbsoluteLayout.GestureRecognizers>
                 <Image x:Name="Player_Char"
                        Source="walking_left.png"
-                       HorizontalOptions="Center"
-                       VerticalOptions="End"
                        WidthRequest="50"
-                       HeightRequest="70"/>
-            </Grid>
+                       HeightRequest="70"
+                       AbsoluteLayout.LayoutBounds="750,605,50,70">
+                    <!-- <Image.GestureRecognizers>
+                        <DragGestureRecognizer DragStarting="Drag_Move"/>
+                    </Image.GestureRecognizers> -->
+                </Image>
+            </AbsoluteLayout>
         </HorizontalStackLayout>
         <HorizontalStackLayout HorizontalOptions="End"
                                VerticalOptions="End">
