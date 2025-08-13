@@ -9,7 +9,6 @@ namespace Shooter_Game
     class Player
     {
         public required string Name { get; set; }
-        public int Health { get; set; }
         public int Damage { get; set; }
     }
 }
