@@ -9,8 +9,11 @@ public partial class GamePage : ContentPage
     private bool Running = false;
     private bool Mag_Loaded = true;
     private IDispatcherTimer Timer;
+    Random random = new Random();
     private int Count = 4;
-    int Ammo = 28;
+    private int Ammo = 28;
+    private int Round = 1;
+    private string direction = "left";
 
     public GamePage()
     {
@@ -47,6 +50,7 @@ public partial class GamePage : ContentPage
                 Start_Countdown.IsVisible = false;
 
                 Running = true;
+                Game_Active();
             }
         }
     }
@@ -80,6 +84,19 @@ public partial class GamePage : ContentPage
         else
         {
             char_x += move;
+        }
+
+        if (char_x > position.X && direction == "left")
+        {
+            Player_Char.Source = "walking_right.png";
+
+            direction = "right";
+        }
+        else if (char_x < position.X && direction == "right")
+        {
+            Player_Char.Source = "walking_left.png";
+
+            direction = "left";
         }
 
         char_x = Math.Clamp(char_x, 0, Play_Area.Width - Player_Char.Width);
@@ -119,15 +136,51 @@ public partial class GamePage : ContentPage
         }
     }
 
-    private void Reload()
+    private async void Reload()
     {
         if (Ammo == 0)
             for (int i = 0; i <= 27; i++)
             {
                 Ammo++;
                 Ammo_Count.Text = Ammo.ToString() + "/28";
+
+                await Task.Delay(30);
             }
 
         Mag_Loaded = true;
+    }
+
+    private async void Game_Active()
+    {
+        int zombies_spawned = 10;
+        int rand_interval;
+
+        await Task.Delay(3000);
+
+        for (int i = zombies_spawned; i >= 1; i--)
+        {
+            Zombie_Spawn();
+
+            rand_interval = random.Next(1, 9);
+
+            await Task.Delay(rand_interval * 1000);
+        }
+    }
+
+    private void Zombie_Spawn()
+    {
+        int rand_spawn;
+
+        var Zombie = new Zombie();
+
+        var Zombie_Img = Zombie.Zombie_Img;
+
+        rand_spawn = random.Next(10, 1490);
+
+        AbsoluteLayout.SetLayoutBounds(Zombie_Img, new Rect(rand_spawn, 70, Zombie_Img.WidthRequest, Zombie_Img.HeightRequest));
+
+        Play_Area.Children.Add(Zombie_Img);
+
+        Zombie_Img.TranslateTo(0, Play_Area.Height, 6000);
     }
 }

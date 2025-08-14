@@ -13,7 +13,7 @@
                 <Label x:Name="Ammo_Count"
                        Text="28/28"
                        IsVisible="False"
-                       TextColor="Gray"
+                       TextColor="red"
                        FontSize="20"/>
             </VerticalStackLayout>
         </HorizontalStackLayout>
