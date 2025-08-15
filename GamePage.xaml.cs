@@ -6,13 +6,18 @@ namespace Shooter_Game;
 
 public partial class GamePage : ContentPage
 {
-    private bool Running = false;
-    private bool Mag_Loaded = true;
     private IDispatcherTimer Timer;
     Random random = new Random();
+
+    private List<Image> Zombies_Active = new List<Image>();
+    private List<Image> Bullets_Active = new List<Image>();
+
+    private bool Running = false;
+    private bool Mag_Loaded = true;
     private int Count = 4;
     private int Ammo = 28;
     private int Round = 1;
+    int zombies_spawned = 10;
     private string direction = "left";
 
     public GamePage()
@@ -55,9 +60,39 @@ public partial class GamePage : ContentPage
         }
     }
 
-    private void Drag_Move(object sender, DragStartingEventArgs e)
+    private async void Game_Active()
     {
+        int rand_interval;
 
+        while (Running)
+        {
+            await Task.Delay(3000);
+
+            for (int i = zombies_spawned; i >= 1; i--)
+            {
+                Zombie_Spawn();
+
+                rand_interval = random.Next(1, 9);
+
+                await Task.Delay(rand_interval * 1000);
+
+                if (!Running)
+                    break;
+            }
+
+            while (Zombies_Active.Count > 0)
+            {
+                await Task.Delay(100);
+
+                if (!Running)
+                    break;
+            }
+
+            zombies_spawned = zombies_spawned * 2;
+
+            Round++;
+            Round_Count.Text = "Round: " + Round.ToString();
+        }
     }
 
     private void Follow_Pointer(object sender, PointerEventArgs e)
@@ -125,15 +160,73 @@ public partial class GamePage : ContentPage
             AbsoluteLayout.SetLayoutBounds(Bullet_Img, new Rect(bullet_x, bullet_y, Bullet_Img.WidthRequest, Bullet_Img.HeightRequest));
 
             Play_Area.Children.Add(Bullet_Img);
-
-            Bullet_Img.TranslateTo(0, -Play_Area.Height, 1000);
+            Bullets_Active.Add(Bullet_Img);
 
             Ammo--;
             Ammo_Count.Text = Ammo.ToString() + "/28";
 
             if (Ammo == 0)
                 Mag_Loaded = false;
+
+            _ = Bullet_Movement(Bullet_Img);
         }
+    }
+
+    private async Task Bullet_Movement(Image Bullet)
+    {
+        int distance = 10;
+
+        while (true)
+        {
+            var bullet_position = AbsoluteLayout.GetLayoutBounds(Bullet);
+
+            double new_position = bullet_position.Y - distance;
+
+            if (new_position + Bullet.Height < 0)
+            {
+                Play_Area.Children.Remove(Bullet);
+                Bullets_Active.Remove(Bullet);
+
+                break;
+            }
+
+            AbsoluteLayout.SetLayoutBounds(Bullet, new Rect(bullet_position.X, new_position, Bullet.WidthRequest, Bullet.HeightRequest));
+
+            if (Check_Collision(Bullet))
+                break;
+
+            await Task.Delay(16);
+        }
+    }
+
+    private bool Collision(View Obj1, View Obj2)
+    {
+        var obj1_position = AbsoluteLayout.GetLayoutBounds(Obj1);
+        var obj2_position = AbsoluteLayout.GetLayoutBounds(Obj2);
+
+        return obj1_position.X < obj2_position.X + obj2_position.Width
+               && obj1_position.X + obj1_position.Width > obj2_position.X
+               && obj1_position.Y < obj2_position.Y + obj2_position.Height
+               && obj1_position.Y + obj1_position.Height > obj2_position.Y;
+    }
+
+    private bool Check_Collision(Image Bullet)
+    {
+        foreach (var Zombie in Zombies_Active.ToList())
+        {
+            if (Collision(Bullet, Zombie))
+            {
+                Play_Area.Children.Remove(Zombie);
+                Play_Area.Children.Remove(Bullet);
+
+                Zombies_Active.Remove(Zombie);
+                Bullets_Active.Remove(Bullet);
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private async void Reload()
@@ -150,23 +243,6 @@ public partial class GamePage : ContentPage
         Mag_Loaded = true;
     }
 
-    private async void Game_Active()
-    {
-        int zombies_spawned = 10;
-        int rand_interval;
-
-        await Task.Delay(3000);
-
-        for (int i = zombies_spawned; i >= 1; i--)
-        {
-            Zombie_Spawn();
-
-            rand_interval = random.Next(1, 9);
-
-            await Task.Delay(rand_interval * 1000);
-        }
-    }
-
     private void Zombie_Spawn()
     {
         int rand_spawn;
@@ -180,7 +256,87 @@ public partial class GamePage : ContentPage
         AbsoluteLayout.SetLayoutBounds(Zombie_Img, new Rect(rand_spawn, 70, Zombie_Img.WidthRequest, Zombie_Img.HeightRequest));
 
         Play_Area.Children.Add(Zombie_Img);
+        Zombies_Active.Add(Zombie_Img);
 
-        Zombie_Img.TranslateTo(0, Play_Area.Height, 6000);
+        _ = Zombie_Move(Zombie_Img);
+    }
+
+    private async Task Zombie_Move(Image Zombie)
+    {
+        int distance = 5;
+
+        while (true)
+        {
+            if (!Zombies_Active.Contains(Zombie) || !Running)
+                break;
+
+            var zombie_position = AbsoluteLayout.GetLayoutBounds(Zombie);
+            var char_position = AbsoluteLayout.GetLayoutBounds(Player_Char);
+
+            double new_position = zombie_position.Y + distance;
+
+            AbsoluteLayout.SetLayoutBounds(Zombie, new Rect(zombie_position.X, new_position, Zombie.WidthRequest, Zombie.HeightRequest));
+
+            if (!Running)
+                break;
+
+            if (Check_Y_Axis_Collision(Zombie))
+            {
+                Game_Over();
+                break;
+            }
+
+            await Task.Delay(16);
+        }
+    }
+    private bool Y_Axis_Collision(View Obj1, View Obj2)
+    {
+        var obj1_position = AbsoluteLayout.GetLayoutBounds(Obj1);
+        var obj2_position = AbsoluteLayout.GetLayoutBounds(Obj2);
+
+        return obj1_position.Y < obj2_position.Y + obj2_position.Height
+               && obj1_position.Y + obj1_position.Height > obj2_position.Y;
+    }
+
+    private bool Check_Y_Axis_Collision(Image Zombie)
+    {
+        if (Y_Axis_Collision(Zombie, Player_Char))
+        {
+                return true;
+        }
+
+        return false;
+    }
+
+    private async void Game_Over()
+    {
+        if (!Running)
+            return;
+
+        Running = false;
+
+        foreach (var zombie in Zombies_Active.ToList())
+        {
+            Play_Area.Children.Remove(zombie);
+            Zombies_Active.Remove(zombie);
+        }
+
+        foreach (var bullet in  Bullets_Active.ToList())
+        {
+            Play_Area.Children.Remove(bullet);
+            Bullets_Active.Remove(bullet);
+        }
+        
+        Current_Weapon.IsVisible = false;
+        Ammo_Count.IsVisible = false;
+        Play_Area.IsVisible = false;
+        Round_Count.IsVisible = false;
+
+        Start_Countdown.IsVisible = true;
+        Start_Countdown.Text = "Game Over!";
+
+        await Task.Delay(3000);
+
+        await Navigation.PushModalAsync(new MainPage(), true);
     }
 }

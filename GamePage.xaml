@@ -50,9 +50,6 @@
                        WidthRequest="50"
                        HeightRequest="70"
                        AbsoluteLayout.LayoutBounds="750,605,50,70">
-                    <!-- <Image.GestureRecognizers>
-                        <DragGestureRecognizer DragStarting="Drag_Move"/>
-                    </Image.GestureRecognizers> -->
                 </Image>
             </AbsoluteLayout>
         </HorizontalStackLayout>
