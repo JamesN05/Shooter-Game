@@ -11,13 +11,17 @@ public partial class GamePage : ContentPage
 
     private List<Image> Zombies_Active = new List<Image>();
     private List<Image> Bullets_Active = new List<Image>();
+    private List<int> Zombies_Health = new List<int>();
 
     private bool Running = false;
     private bool Mag_Loaded = true;
     private int Count = 4;
     private int Ammo = 28;
     private int Round = 1;
-    int zombies_spawned = 10;
+    private int zombie_speed = 1;
+    private int zombies_spawned = 10;
+    private int zombie_health = 20;
+    private int bullet_damage = 20;
     private string direction = "left";
 
     public GamePage()
@@ -46,7 +50,6 @@ public partial class GamePage : ContentPage
             }
             else if (Count == 0)
             {
-                Current_Weapon.IsVisible = true;
                 Ammo_Count.IsVisible = true;
                 Play_Area.IsVisible = true;
                 Round_Count.IsVisible = true;
@@ -63,6 +66,7 @@ public partial class GamePage : ContentPage
     private async void Game_Active()
     {
         int rand_interval;
+        int spawn_delay = 9;
 
         while (Running)
         {
@@ -72,7 +76,7 @@ public partial class GamePage : ContentPage
             {
                 Zombie_Spawn();
 
-                rand_interval = random.Next(1, 9);
+                rand_interval = random.Next(1, spawn_delay);
 
                 await Task.Delay(rand_interval * 1000);
 
@@ -88,9 +92,15 @@ public partial class GamePage : ContentPage
                     break;
             }
 
-            zombies_spawned = zombies_spawned * 2;
-
+            zombies_spawned++;
+            zombie_speed++;
             Round++;
+
+            zombie_health += 20;
+
+            if (spawn_delay >= 3)
+                spawn_delay--;
+
             Round_Count.Text = "Round: " + Round.ToString();
         }
     }
@@ -216,11 +226,19 @@ public partial class GamePage : ContentPage
         {
             if (Collision(Bullet, Zombie))
             {
-                Play_Area.Children.Remove(Zombie);
                 Play_Area.Children.Remove(Bullet);
-
-                Zombies_Active.Remove(Zombie);
                 Bullets_Active.Remove(Bullet);
+
+                int index = Zombies_Active.IndexOf(Zombie);
+
+                Zombies_Health[index] -= bullet_damage;
+
+                if (Zombies_Health[index] <= 0)
+                {
+                    Play_Area.Children.Remove(Zombie);
+                    Zombies_Active.Remove(Zombie);
+                    Zombies_Health.RemoveAt(index);
+                }
 
                 return true;
             }
@@ -251,20 +269,20 @@ public partial class GamePage : ContentPage
 
         var Zombie_Img = Zombie.Zombie_Img;
 
-        rand_spawn = random.Next(10, 1490);
+        rand_spawn = random.Next(50, 1450);
 
         AbsoluteLayout.SetLayoutBounds(Zombie_Img, new Rect(rand_spawn, 70, Zombie_Img.WidthRequest, Zombie_Img.HeightRequest));
 
         Play_Area.Children.Add(Zombie_Img);
         Zombies_Active.Add(Zombie_Img);
 
+        Zombies_Health.Add(zombie_health);
+
         _ = Zombie_Move(Zombie_Img);
     }
 
     private async Task Zombie_Move(Image Zombie)
     {
-        int distance = 5;
-
         while (true)
         {
             if (!Zombies_Active.Contains(Zombie) || !Running)
@@ -273,7 +291,7 @@ public partial class GamePage : ContentPage
             var zombie_position = AbsoluteLayout.GetLayoutBounds(Zombie);
             var char_position = AbsoluteLayout.GetLayoutBounds(Player_Char);
 
-            double new_position = zombie_position.Y + distance;
+            double new_position = zombie_position.Y + zombie_speed;
 
             AbsoluteLayout.SetLayoutBounds(Zombie, new Rect(zombie_position.X, new_position, Zombie.WidthRequest, Zombie.HeightRequest));
 
@@ -314,6 +332,7 @@ public partial class GamePage : ContentPage
             return;
 
         Running = false;
+        Timer.Stop();
 
         foreach (var zombie in Zombies_Active.ToList())
         {
@@ -327,7 +346,6 @@ public partial class GamePage : ContentPage
             Bullets_Active.Remove(bullet);
         }
         
-        Current_Weapon.IsVisible = false;
         Ammo_Count.IsVisible = false;
         Play_Area.IsVisible = false;
         Round_Count.IsVisible = false;
@@ -337,6 +355,8 @@ public partial class GamePage : ContentPage
 
         await Task.Delay(3000);
 
-        await Navigation.PushModalAsync(new MainPage(), true);
+        await Navigation.PopModalAsync(true);
+
+        return;
     }
 }

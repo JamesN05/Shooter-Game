@@ -8,8 +8,6 @@
     <VerticalStackLayout>
         <HorizontalStackLayout>
             <VerticalStackLayout HorizontalOptions="Start">
-                <Image x:Name="Current_Weapon"
-                       IsVisible="False"/>
                 <Label x:Name="Ammo_Count"
                        Text="28/28"
                        IsVisible="False"
