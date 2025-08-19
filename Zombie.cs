@@ -10,8 +10,7 @@ namespace Shooter_Game
     class Zombie
     {
         public Image Zombie_Img { get; private set; }
-        public int Zombie_Health { get; set; }
-        
+
         public Zombie()
         {
             Zombie_Img = new Image

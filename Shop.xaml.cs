@@ -2,7 +2,7 @@ namespace Shooter_Game;
 
 public partial class Shop : ContentPage
 {
-	public Shop()
+    public Shop()
 	{
 		InitializeComponent();
 	}

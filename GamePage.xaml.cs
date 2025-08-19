@@ -15,13 +15,21 @@ public partial class GamePage : ContentPage
 
     private bool Running = false;
     private bool Mag_Loaded = true;
+
+    private bool Instakill_Active = false;
+    private bool DoublePoints_Active = false;
+    private bool FreeFire_Active = false;
+    private bool CheatDeath_Active = false;
+    private bool QuickShots_Active = false;
+
+
     private int Count = 4;
-    private int Ammo = 28;
+    private int Ammo = Player_Stats.Mag_Capacity;
     private int Round = 1;
     private int zombie_speed = 1;
     private int zombies_spawned = 10;
     private int zombie_health = 20;
-    private int bullet_damage = 20;
+    private int bullet_damage = Player_Stats.Bullet_Damage;
     private string direction = "left";
 
     public GamePage()
@@ -50,7 +58,12 @@ public partial class GamePage : ContentPage
             }
             else if (Count == 0)
             {
+                Ammo_Count.Text = "Ammo: " + Ammo.ToString() + "/" + Player_Stats.Mag_Capacity.ToString();
                 Ammo_Count.IsVisible = true;
+
+                Gold_Count.Text = "Gold: " + Player_Stats.Gold.ToString();
+                Gold_Count.IsVisible = true;
+
                 Play_Area.IsVisible = true;
                 Round_Count.IsVisible = true;
 
@@ -109,17 +122,18 @@ public partial class GamePage : ContentPage
     {
         if (!Running)
             return;
-        
+
         Point? Pointer_Position = e.GetPosition(Play_Area);
-        
+
         var position = AbsoluteLayout.GetLayoutBounds(Player_Char);
         double char_x = position.X;
 
         double pointer_x = Pointer_Position.Value.X;
 
-        const double speed = 5;
+        double speed = 5;
+
         double distance = pointer_x - char_x;
-        
+
         double move = speed * Math.Sign(distance);
 
         if (Math.Abs(distance) <= speed)
@@ -172,8 +186,11 @@ public partial class GamePage : ContentPage
             Play_Area.Children.Add(Bullet_Img);
             Bullets_Active.Add(Bullet_Img);
 
-            Ammo--;
-            Ammo_Count.Text = Ammo.ToString() + "/28";
+            if (!FreeFire_Active)
+            {
+                Ammo--;
+                Ammo_Count.Text = "Ammo: " + Ammo.ToString() + "/" + Player_Stats.Mag_Capacity.ToString();
+            }
 
             if (Ammo == 0)
                 Mag_Loaded = false;
@@ -184,7 +201,10 @@ public partial class GamePage : ContentPage
 
     private async Task Bullet_Movement(Image Bullet)
     {
-        int distance = 10;
+        int distance = Player_Stats.Bullet_Speed;
+
+        if (QuickShots_Active)
+            distance = distance * 2;
 
         while (true)
         {
@@ -231,13 +251,19 @@ public partial class GamePage : ContentPage
 
                 int index = Zombies_Active.IndexOf(Zombie);
 
-                Zombies_Health[index] -= bullet_damage;
+                if (!Instakill_Active)
+                    Zombies_Health[index] -= bullet_damage;
+                else if (Instakill_Active)
+                    Zombies_Health[index] -= Zombies_Health[index];
 
                 if (Zombies_Health[index] <= 0)
                 {
                     Play_Area.Children.Remove(Zombie);
                     Zombies_Active.Remove(Zombie);
                     Zombies_Health.RemoveAt(index);
+
+                    _ = Gold_Increase();
+                    _ = Power_Up_Drops(Zombie);
                 }
 
                 return true;
@@ -247,13 +273,30 @@ public partial class GamePage : ContentPage
         return false;
     }
 
+    private async Task Gold_Increase()
+    {
+        int net_income = 9;
+
+        if (DoublePoints_Active)
+            net_income = 19;
+
+        for (int i = 0; i <= net_income; i++)
+        {
+            Player_Stats.Gold++;
+
+            Gold_Count.Text = "Gold: " + Player_Stats.Gold.ToString();
+
+            await Task.Delay(30);
+        }
+    }
+
     private async void Reload()
     {
         if (Ammo == 0)
-            for (int i = 0; i <= 27; i++)
+            for (int i = 0; i <= (Player_Stats.Mag_Capacity - 1); i++)
             {
                 Ammo++;
-                Ammo_Count.Text = Ammo.ToString() + "/28";
+                Ammo_Count.Text = "Ammo: " + Ammo.ToString() + "/" + Player_Stats.Mag_Capacity.ToString();
 
                 await Task.Delay(30);
             }
@@ -300,8 +343,17 @@ public partial class GamePage : ContentPage
 
             if (Check_Y_Axis_Collision(Zombie))
             {
-                Game_Over();
-                break;
+                if (!CheatDeath_Active)
+                {
+                    Game_Over();
+                    break;
+                }
+                else if (CheatDeath_Active)
+                {
+                    Play_Area.Children.Remove(Zombie);
+                    Zombies_Active.Remove(Zombie);
+                    break;
+                }
             }
 
             await Task.Delay(16);
@@ -320,7 +372,7 @@ public partial class GamePage : ContentPage
     {
         if (Y_Axis_Collision(Zombie, Player_Char))
         {
-                return true;
+            return true;
         }
 
         return false;
@@ -340,13 +392,14 @@ public partial class GamePage : ContentPage
             Zombies_Active.Remove(zombie);
         }
 
-        foreach (var bullet in  Bullets_Active.ToList())
+        foreach (var bullet in Bullets_Active.ToList())
         {
             Play_Area.Children.Remove(bullet);
             Bullets_Active.Remove(bullet);
         }
-        
+
         Ammo_Count.IsVisible = false;
+        Gold_Count.IsVisible = false;
         Play_Area.IsVisible = false;
         Round_Count.IsVisible = false;
 
@@ -358,5 +411,169 @@ public partial class GamePage : ContentPage
         await Navigation.PopModalAsync(true);
 
         return;
+    }
+
+    private async Task Power_Up_Drops(Image zombie)
+    {
+        int rand = random.Next(1, 51);
+
+        if (rand == 10)
+            _ = InstaKill(zombie);
+        else if (rand == 20)
+            _ = DoublePoints(zombie);
+        else if (rand == 30)
+            _ = Nuke(zombie);
+        else if (rand == 35)
+            _ = FreeFire(zombie);
+        else if (rand == 40)
+            _ = CheatDeath(zombie);
+        else if (rand == 45)
+            _ = QuickShots(zombie);
+        else
+            return;
+    }
+
+    private async Task InstaKill(Image zombie)
+    {
+        var Instakill = new Instakill();
+
+        var Instakill_Img = Instakill.Instakill_Img;
+
+        _ = Spawn_PowerUp(zombie, Instakill_Img);
+
+        if (await Move_PowerUp(Instakill_Img))
+        {
+            Instakill_Active = true;
+
+            await Task.Delay(30000);
+
+            Instakill_Active = false;
+        }
+    }
+
+    private async Task DoublePoints(Image zombie)
+    {
+        var Double_Points = new Double_Points();
+
+        var DoublePoints_Img = Double_Points.DoublePoints_Img;
+
+        _ = Spawn_PowerUp(zombie, DoublePoints_Img);
+
+        if (await Move_PowerUp(DoublePoints_Img))
+        {
+            DoublePoints_Active = true;
+
+            await Task.Delay(30000);
+
+            DoublePoints_Active = false;
+        }
+    }
+
+    private async Task Nuke(Image zombie)
+    {
+        var Nuke = new Nuke();
+
+        var Nuke_Img = Nuke.Nuke_Img;
+
+        _ = Spawn_PowerUp(zombie, Nuke_Img);
+
+        if (await Move_PowerUp(Nuke_Img))
+        {
+            foreach (var zombie_active in Zombies_Active.ToList())
+            {
+                Play_Area.Children.Remove(zombie_active);
+                Zombies_Active.Remove(zombie_active);
+
+                _ = Gold_Increase();
+            }
+        }
+    }
+
+    private async Task FreeFire(Image zombie)
+    {
+        var Free_Fire = new Free_Fire();
+
+        var FreeFire_Img = Free_Fire.FreeFire_Img;
+
+        _ = Spawn_PowerUp(zombie, FreeFire_Img);
+
+        if (await Move_PowerUp(FreeFire_Img))
+        {
+            FreeFire_Active = true;
+
+            await Task.Delay(30000);
+
+            FreeFire_Active = false;
+        }
+    }
+
+    private async Task CheatDeath(Image zombie)
+    {
+        var Cheat_Death = new Cheat_Death();
+
+        var CheatDeath_Img = Cheat_Death.CheatDeath_Img;
+
+        _ = Spawn_PowerUp(zombie, CheatDeath_Img);
+
+        if (await Move_PowerUp(CheatDeath_Img))
+        {
+            CheatDeath_Active = true;
+        }
+    }
+
+    private async Task QuickShots(Image zombie)
+    {
+        var Quick_Shots = new Quick_Shots();
+
+        var QuickShots_Img = Quick_Shots.QuickShots_Img;
+
+        _ = Spawn_PowerUp(zombie, QuickShots_Img);
+
+        if (await Move_PowerUp(QuickShots_Img))
+        {
+            QuickShots_Active = true;
+
+            await Task.Delay(30000);
+
+            QuickShots_Active = false;
+        }
+    }
+
+    private async Task Spawn_PowerUp(Image zombie, Image Power_Up)
+    {
+        var zombie_position = AbsoluteLayout.GetLayoutBounds(zombie);
+
+        double powerup_x = zombie_position.X;
+        double powerup_y = zombie_position.Y;
+
+        AbsoluteLayout.SetLayoutBounds(Power_Up, new Rect(powerup_x, powerup_y, Power_Up.WidthRequest, Power_Up.HeightRequest));
+
+        Play_Area.Children.Add(Power_Up);
+    }
+
+    private async Task<bool> Move_PowerUp(Image Power_Up)
+    {
+        while (true)
+        {
+            var powerup_position = AbsoluteLayout.GetLayoutBounds(Power_Up);
+            var char_position = AbsoluteLayout.GetLayoutBounds(Player_Char);
+
+            double new_position = powerup_position.Y + 2;
+
+            AbsoluteLayout.SetLayoutBounds(Power_Up, new Rect(powerup_position.X, new_position, Power_Up.WidthRequest, Power_Up.HeightRequest));
+
+            if (Collision(Power_Up, Player_Char))
+            {
+                Play_Area.Children.Remove(Power_Up);
+                return true;
+            }
+            else if (Y_Axis_Collision(Power_Up, Player_Char) && !Collision(Power_Up, Player_Char))
+            {
+                Play_Area.Children.Remove(Power_Up);
+                return false;
+            }
+
+            await Task.Delay(16);
+        }
     }
 }

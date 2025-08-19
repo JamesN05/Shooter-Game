@@ -9,10 +9,15 @@
         <HorizontalStackLayout>
             <VerticalStackLayout HorizontalOptions="Start">
                 <Label x:Name="Ammo_Count"
-                       Text="28/28"
+                       Text="Ammo: /"
                        IsVisible="False"
                        TextColor="red"
-                       FontSize="20"/>
+                       FontSize="25"/>
+                <Label x:Name="Gold_Count"
+                       Text="Gold: "
+                       IsVisible="False"
+                       TextColor="Gold"
+                       FontSize="25"/>
             </VerticalStackLayout>
         </HorizontalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center"
@@ -58,7 +63,7 @@
                    IsVisible="False"
                    TextColor="Red"
                    FontFamily="PermanentMarker"
-                   FontSize="40"/>
+                   FontSize="30"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
