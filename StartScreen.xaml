@@ -8,7 +8,7 @@
             <HorizontalStackLayout Margin="20"/>
             <HorizontalStackLayout HorizontalOptions="Center"
                                    Margin="40">
-                <Label Text="Shooter Game"
+                <Label Text="Last Stand"
                        FontSize="70"
                        TextColor="Red"
                        FontAttributes="Bold"
@@ -44,15 +44,6 @@
                 <Button x:Name="Stats_Button"
                         Text="Stats"
                         Clicked="Stats_Button_Clicked"
-                        FontSize="25"
-                        Margin="5"
-                        Background="SaddleBrown"
-                        TextColor="LawnGreen"
-                        FontAttributes="Bold"
-                        FontFamily="PermanentMarker"/>
-                <Button x:Name="Shop_Button"
-                        Text="Shop"
-                        Clicked="Shop_Button_Clicked"
                         FontSize="25"
                         Margin="5"
                         Background="SaddleBrown"

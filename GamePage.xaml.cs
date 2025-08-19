@@ -30,6 +30,9 @@ public partial class GamePage : ContentPage
     private int zombies_spawned = 10;
     private int zombie_health = 20;
     private int bullet_damage = Player_Stats.Bullet_Damage;
+    private int PowerUps_PickedUp = 0;
+    private int Zombie_Kills = 0;
+    private int Gold_Earned = 0;
     private string direction = "left";
 
     public GamePage()
@@ -261,6 +264,7 @@ public partial class GamePage : ContentPage
                     Play_Area.Children.Remove(Zombie);
                     Zombies_Active.Remove(Zombie);
                     Zombies_Health.RemoveAt(index);
+                    Zombie_Kills++;
 
                     _ = Gold_Increase();
                     _ = Power_Up_Drops(Zombie);
@@ -283,6 +287,7 @@ public partial class GamePage : ContentPage
         for (int i = 0; i <= net_income; i++)
         {
             Player_Stats.Gold++;
+            Gold_Earned++;
 
             Gold_Count.Text = "Gold: " + Player_Stats.Gold.ToString();
 
@@ -352,6 +357,8 @@ public partial class GamePage : ContentPage
                 {
                     Play_Area.Children.Remove(Zombie);
                     Zombies_Active.Remove(Zombie);
+                    CheatDeath_Active = false;
+                    Cheat_Death_Img.IsVisible = false;
                     break;
                 }
             }
@@ -386,6 +393,8 @@ public partial class GamePage : ContentPage
         Running = false;
         Timer.Stop();
 
+        Save_Game_Info();
+
         foreach (var zombie in Zombies_Active.ToList())
         {
             Play_Area.Children.Remove(zombie);
@@ -402,6 +411,12 @@ public partial class GamePage : ContentPage
         Gold_Count.IsVisible = false;
         Play_Area.IsVisible = false;
         Round_Count.IsVisible = false;
+
+        Instakill_Image.IsVisible = false;
+        Free_Fire_Img.IsVisible = false;
+        Quick_Shot.IsVisible = false;
+        Cheat_Death_Img.IsVisible = false;
+        Double_Points_Img.IsVisible = false;
 
         Start_Countdown.IsVisible = true;
         Start_Countdown.Text = "Game Over!";
@@ -444,10 +459,12 @@ public partial class GamePage : ContentPage
         if (await Move_PowerUp(Instakill_Img))
         {
             Instakill_Active = true;
+            Instakill_Image.IsVisible = true;
 
             await Task.Delay(30000);
 
             Instakill_Active = false;
+            Instakill_Image.IsVisible = false;
         }
     }
 
@@ -462,10 +479,12 @@ public partial class GamePage : ContentPage
         if (await Move_PowerUp(DoublePoints_Img))
         {
             DoublePoints_Active = true;
+            Double_Points_Img.IsVisible = true;
 
             await Task.Delay(30000);
 
             DoublePoints_Active = false;
+            Double_Points_Img.IsVisible = false;
         }
     }
 
@@ -483,6 +502,7 @@ public partial class GamePage : ContentPage
             {
                 Play_Area.Children.Remove(zombie_active);
                 Zombies_Active.Remove(zombie_active);
+                Zombie_Kills++;
 
                 _ = Gold_Increase();
             }
@@ -500,10 +520,12 @@ public partial class GamePage : ContentPage
         if (await Move_PowerUp(FreeFire_Img))
         {
             FreeFire_Active = true;
+            Free_Fire_Img.IsVisible = true;
 
             await Task.Delay(30000);
 
             FreeFire_Active = false;
+            Free_Fire_Img.IsVisible = false;
         }
     }
 
@@ -518,6 +540,7 @@ public partial class GamePage : ContentPage
         if (await Move_PowerUp(CheatDeath_Img))
         {
             CheatDeath_Active = true;
+            Cheat_Death_Img.IsVisible = true;
         }
     }
 
@@ -532,10 +555,12 @@ public partial class GamePage : ContentPage
         if (await Move_PowerUp(QuickShots_Img))
         {
             QuickShots_Active = true;
+            Quick_Shot.IsVisible = true;
 
             await Task.Delay(30000);
 
             QuickShots_Active = false;
+            Quick_Shot.IsVisible = false;
         }
     }
 
@@ -565,6 +590,7 @@ public partial class GamePage : ContentPage
             if (Collision(Power_Up, Player_Char))
             {
                 Play_Area.Children.Remove(Power_Up);
+                PowerUps_PickedUp++;
                 return true;
             }
             else if (Y_Axis_Collision(Power_Up, Player_Char) && !Collision(Power_Up, Player_Char))
@@ -574,6 +600,22 @@ public partial class GamePage : ContentPage
             }
 
             await Task.Delay(16);
+        }
+    }
+
+    private void Save_Game_Info()
+    {
+        Player_Stats.Last_Round = Round;
+        Player_Stats.Last_Zombies_Killed = Zombie_Kills;
+        Player_Stats.Last_Gold_Earned = Gold_Earned;
+        Player_Stats.Last_PowerUps_PickedUp = PowerUps_PickedUp;
+
+        if (Round >= Player_Stats.Highest_Round && Zombie_Kills >= Player_Stats.Highest_Zombies_Killed)
+        {
+            Player_Stats.Highest_Round = Round;
+            Player_Stats.Highest_Zombies_Killed = Zombie_Kills;
+            Player_Stats.Highest_Gold_Earned = Gold_Earned;
+            Player_Stats.Highest_PowerUps_PickedUp = PowerUps_PickedUp;
         }
     }
 }

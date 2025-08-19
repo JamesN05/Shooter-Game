@@ -19,6 +19,31 @@
                        TextColor="Gold"
                        FontSize="25"/>
             </VerticalStackLayout>
+            <Image x:Name="Instakill_Image"
+                   Source="instakill.png"
+                   IsVisible="False"
+                   HeightRequest="40"
+                   WidthRequest="40"/>
+            <Image x:Name="Free_Fire_Img"
+                   Source="free_fire.png"
+                   IsVisible="False"
+                   HeightRequest="40"
+                   WidthRequest="40"/>
+            <Image x:Name="Quick_Shot"
+                   Source="quick_shot.png"
+                   IsVisible="False"
+                   HeightRequest="40"
+                   WidthRequest="40"/>
+            <Image x:Name="Double_Points_Img"
+                   Source="double_points.png"
+                   IsVisible="False"
+                   HeightRequest="40"
+                   WidthRequest="40"/>
+            <Image x:Name="Cheat_Death_Img"
+                   Source="cheat_death.png"
+                   IsVisible="False"
+                   HeightRequest="40"
+                   WidthRequest="40"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center"
                                VerticalOptions="Center">

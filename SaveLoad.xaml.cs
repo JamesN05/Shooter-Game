@@ -9,7 +9,7 @@ public partial class SaveLoad : ContentPage
 
     private async void Return_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new MainPage(), true);
+        await Navigation.PopModalAsync(true);
     }
 
     private void Save1_Button_Clicked(object sender, EventArgs e)

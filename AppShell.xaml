@@ -8,7 +8,7 @@
     Title="Shooter_Game">
 
     <ShellContent
-        Title="Shooter Game by James Nagle"
+        Title="Last Stand by James Nagle"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 </Shell>

@@ -8,14 +8,103 @@
         <HorizontalStackLayout>
             <Button x:Name="Return_Button"
                     Text="Back Home"
-                    Clicked="Return_Button_Clicked"/>
+                    Clicked="Return_Button_Clicked"
+                    Background="SaddleBrown"
+                    TextColor="LawnGreen"
+                    FontAttributes="Bold"
+                    FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="Stats"
-                   FontSize="50"/>
+                   FontSize="60"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
-        <HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <VerticalStackLayout>
+                <Label Text="Gold"
+                       FontSize="30"
+                       TextColor="Gold"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+                <Label x:Name="Gold_Count"
+                       Text=""
+                       FontSize="25"
+                       TextColor="Gold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Bullet Damge"
+                       FontSize="30"
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+                <Label x:Name="Bullet_Damage"
+                       Text=""
+                       FontSize="25"
+                       TextColor="Red"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+                <Button x:Name="Buy_Bullet_Damage"
+                        Text="Upgrade: 100 Gold"
+                        Clicked="Buy_Bullet_Damage_Clicked"
+                        Background="SaddleBrown"
+                        TextColor="Gold"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"
+                        HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Bullet Speed"
+                       FontSize="30"
+                       TextColor="DeepSkyBlue"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+                <Label x:Name="Bullet_Speed"
+                       Text=""
+                       FontSize="25"
+                       TextColor="DeepSkyBlue"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+                <Button x:Name="Buy_Bullet_Speed"
+                        Text="Upgrade: 100 Gold"
+                        Clicked="Buy_Bullet_Speed_Clicked"
+                        Background="SaddleBrown"
+                        TextColor="Gold"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"
+                        HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Mag Size"
+                       FontSize="30"
+                       TextColor="Grey"
+                       FontAttributes="Bold"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+                <Label x:Name="Mag_Size"
+                       Text=""
+                       FontSize="25"
+                       TextColor="Grey"
+                       FontFamily="PermanentMarker"
+                       HorizontalOptions="Center"/>
+                <Button x:Name="Buy_Mag_Size"
+                        Text="Upgrade: 100 Gold"
+                        Clicked="Buy_Mag_Size_Clicked"
+                        Background="SaddleBrown"
+                        TextColor="Gold"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"
+                        HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+        <Grid>
 
-        </HorizontalStackLayout>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

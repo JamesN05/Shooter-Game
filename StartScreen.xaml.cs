@@ -27,11 +27,6 @@
             await Navigation.PushModalAsync(new Stats(), true);
         }
 
-        private async void Shop_Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new Shop(), true);
-        }
-
         private async void Catalogue_Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new Catalogue(), true);
