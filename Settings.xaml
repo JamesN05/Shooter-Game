@@ -101,9 +101,9 @@
                    FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center">
-            <Button x:Name="Auto_Save_Button"
-                    Text="On"
-                    Clicked="Auto_Save_Button_Clicked"
+            <Button x:Name="Local_Save_Button"
+                    Text="Delete Local Data"
+                    Clicked="Local_Save_Button_Clicked"
                     FontSize="30"
                     Margin="7"
                     Background="SaddleBrown"

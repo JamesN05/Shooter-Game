@@ -30,7 +30,7 @@
                    HeightRequest="40"
                    WidthRequest="40"/>
             <Image x:Name="Quick_Shot"
-                   Source="quick_shot.png"
+                   Source="quick_shots.png"
                    IsVisible="False"
                    HeightRequest="40"
                    WidthRequest="40"/>

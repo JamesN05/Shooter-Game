@@ -54,7 +54,7 @@
             <HorizontalStackLayout HorizontalOptions="Center"
                                    VerticalOptions="Center">
                 <Button x:Name="Catalogue_Button"
-                        Text="Weapons and Power-Ups Catalogue"
+                        Text="Power-Ups Catalogue" 
                         Clicked="Catalogue_Button_Clicked"
                         FontSize="25"
                         Margin="5"
@@ -73,15 +73,17 @@
                         FontFamily="PermanentMarker"/>
             </HorizontalStackLayout>
             <HorizontalStackLayout Margin="70"/>
-            <Grid x:Name="Tips"
-                  HeightRequest="150"
-                  WidthRequest="200"
-                  RowDefinitions="50,100"
-                  ColumnDefinitions="200">
+            <Grid x:Name="Tips_Grid"
+                  HeightRequest="160"
+                  WidthRequest="400"
+                  RowDefinitions="50,110"
+                  ColumnDefinitions="400"
+                  x:FieldModifier="public">
                 <Border Grid.Row="0"
                         Grid.Column="0"
                         BackgroundColor="SaddleBrown"
-                        Margin="4">
+                        Margin="4"
+                        IsVisible="True">
                     <Label Text="Tips"
                            FontSize="25"
                            TextColor="Red"
@@ -93,13 +95,24 @@
                 <Border Grid.Row="1"
                         Grid.Column="0"
                         BackgroundColor="SaddleBrown"
-                        Margin="4">
-                    <Label Text="Placeholder Tip"
-                           FontSize="18"
-                           TextColor="LawnGreen"
-                           FontAttributes="Bold"
-                           FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"/>
+                        Margin="4"
+                        IsVisible="True">
+                    <VerticalStackLayout>
+                        <Label x:Name="Title_Tip"
+                               Text="Title Tip"
+                               FontSize="20"
+                               TextColor="Red"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"/>
+                        <Label x:Name="Tip_Text"
+                               Text="Tip"
+                               FontSize="15"
+                               TextColor="LawnGreen"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
                 </Border>
             </Grid>
         </VerticalStackLayout>

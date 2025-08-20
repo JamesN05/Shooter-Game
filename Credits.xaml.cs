@@ -9,6 +9,6 @@ public partial class Credits : ContentPage
 
     private async void Return_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new MainPage(), true);
+        await Navigation.PopModalAsync(true);
     }
 }

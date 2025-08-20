@@ -109,8 +109,10 @@ public partial class GamePage : ContentPage
             }
 
             zombies_spawned++;
-            zombie_speed++;
             Round++;
+
+            if (zombie_speed <= 7)
+                zombie_speed++;
 
             zombie_health += 20;
 
@@ -366,6 +368,7 @@ public partial class GamePage : ContentPage
             await Task.Delay(16);
         }
     }
+
     private bool Y_Axis_Collision(View Obj1, View Obj2)
     {
         var obj1_position = AbsoluteLayout.GetLayoutBounds(Obj1);
@@ -420,6 +423,8 @@ public partial class GamePage : ContentPage
 
         Start_Countdown.IsVisible = true;
         Start_Countdown.Text = "Game Over!";
+
+        Player_Stats.Save_Locally();
 
         await Task.Delay(3000);
 
