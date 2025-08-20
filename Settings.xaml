@@ -22,42 +22,6 @@
                    FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center">
-             <Label Text="Difficulty"
-                    FontSize="45"
-                    TextColor="Red"
-                    FontAttributes="Bold"
-                    FontFamily="PermanentMarker"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Button x:Name="Easy_Button"
-                    Text="Easy"
-                    Clicked="Easy_Button_Clicked"
-                    FontSize="20"
-                    Margin="7"
-                    Background="SaddleBrown"
-                    TextColor="LawnGreen"
-                    FontAttributes="Bold"
-                    FontFamily="PermanentMarker"/>
-            <Button x:Name="Standard_Button"
-                    Text="Standard"
-                    Clicked="Standard_Button_Clicked"
-                    FontSize="20"
-                    Margin="7"
-                    Background="SaddleBrown"
-                    TextColor="LawnGreen"
-                    FontAttributes="Bold"
-                    FontFamily="PermanentMarker"/>
-            <Button x:Name="Hard_Button"
-                    Text="Hard"
-                    Clicked="Hard_Button_Clicked"
-                    FontSize="20"
-                    Margin="7"
-                    Background="SaddleBrown"
-                    TextColor="LawnGreen"
-                    FontAttributes="Bold"
-                    FontFamily="PermanentMarker"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="Center">
             <Label Text="Text Size"
                    FontSize="45"
                    TextColor="Red"

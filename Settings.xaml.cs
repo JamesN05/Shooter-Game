@@ -21,21 +21,6 @@ public partial class Settings : ContentPage
         await Navigation.PopModalAsync(true);
     }
 
-    private void Easy_Button_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void Standard_Button_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void Hard_Button_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
     private void Small_Button_Clicked(object sender, EventArgs e)
     {
 
