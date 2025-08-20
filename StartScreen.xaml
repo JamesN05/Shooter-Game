@@ -62,15 +62,6 @@
                         TextColor="LawnGreen"
                         FontAttributes="Bold"
                         FontFamily="PermanentMarker"/>
-                <Button x:Name="Credits_Button"
-                        Text="Credits"
-                        Clicked="Credits_Button_Clicked"
-                        FontSize="25"
-                        Margin="5"
-                        Background="SaddleBrown"
-                        TextColor="LawnGreen"
-                        FontAttributes="Bold"
-                        FontFamily="PermanentMarker"/>
             </HorizontalStackLayout>
             <HorizontalStackLayout Margin="70"/>
             <Grid x:Name="Tips_Grid"

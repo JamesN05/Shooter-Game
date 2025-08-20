@@ -22,43 +22,7 @@
                    FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center">
-            <Label Text="Text Size"
-                   FontSize="45"
-                   TextColor="Red"
-                   FontAttributes="Bold"
-                   FontFamily="PermanentMarker"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Button x:Name="Small_Button"
-                    Text="Small"
-                    Clicked="Small_Button_Clicked"
-                    FontSize="20"
-                    Margin="7"
-                    Background="SaddleBrown"
-                    TextColor="LawnGreen"
-                    FontAttributes="Bold"
-                    FontFamily="PermanentMarker"/>
-            <Button x:Name="Medium_Button"
-                    Text="Medium"
-                    Clicked="Medium_Button_Clicked"
-                    FontSize="20"
-                    Margin="7"
-                    Background="SaddleBrown"
-                    TextColor="LawnGreen"
-                    FontAttributes="Bold"
-                    FontFamily="PermanentMarker"/>
-            <Button x:Name="Large_Button"
-                    Text="Large"
-                    Clicked="Large_Button_Clicked"
-                    FontSize="20"
-                    Margin="7"
-                    Background="SaddleBrown"
-                    TextColor="LawnGreen"
-                    FontAttributes="Bold"
-                    FontFamily="PermanentMarker"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Label Text="Auto-Save"
+            <Label Text="Local Saved Data"
                    FontSize="45"
                    TextColor="Red"
                    FontAttributes="Bold"

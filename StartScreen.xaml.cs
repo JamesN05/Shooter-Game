@@ -43,11 +43,6 @@
             await Navigation.PushModalAsync(new Catalogue(), true);
         }
 
-        private async void Credits_Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new Credits(), true);
-        }
-
         private async void Tip_Display()
         {
             Random random = new Random();

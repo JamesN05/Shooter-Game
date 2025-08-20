@@ -17,11 +17,11 @@ public partial class SaveLoad : ContentPage
         Save1_Button.Background = new SolidColorBrush(Colors.DarkRed);
 
         string filePath = Path.Combine(FileSystem.AppDataDirectory, "Save1.txt");
+        StreamWriter outputFile = new StreamWriter(filePath);
 
-        using (StreamWriter outputFile = new StreamWriter(filePath))
-        {
-            Save_to_File(outputFile);
-        }
+        Save_to_File(outputFile);
+
+        outputFile.Close();
 
         await Task.Delay(1000);
 
@@ -273,66 +273,32 @@ public partial class SaveLoad : ContentPage
 
     private void Load_from_File(StreamReader inputFile)
     {
-        List<int> data = new List<int>();
+        List<string> data = new List<string>();
 
         string line = "";
 
         while ((line = inputFile.ReadLine()) != null)
         {
-            data.Add(int.Parse(line));
+            data.Add((line));
         }
 
-        for (int i = 0; i < data.Count; i++)
-        {
-            if (i == 0)
-            {
-                Player_Stats.Gold = data[i];
-            }
-            else if (i == 1)
-            {
-                Player_Stats.Bullet_Damage = data[i];
-            }
-            else if (i == 2)
-            {
-                Player_Stats.Bullet_Speed = data[i];
-            }
-            else if (i == 3)
-            {
-                Player_Stats.Mag_Capacity = data[i];
-            }
-            else if (i == 4)
-            {
-                Player_Stats.Highest_Round = data[i];
-            }
-            else if (i == 5)
-            {
-                Player_Stats.Highest_Zombies_Killed = data[i];
-            }
-            else if (i == 6)
-            {
-                Player_Stats.Highest_PowerUps_PickedUp = data[i];
-            }
-            else if (i == 7)
-            {
-                Player_Stats.Highest_Gold_Earned = data[i];
-            }
-            else if (i == 8)
-            {
-                Player_Stats.Last_Round = data[i];
-            }
-            else if (i == 9)
-            {
-                Player_Stats.Last_Zombies_Killed = data[i];
-            }
-            else if (i == 10)
-            {
-                Player_Stats.Last_PowerUps_PickedUp = data[i];
-            }
-            else if (i == 11)
-            {
-                Player_Stats.Last_Gold_Earned = data[i];
-            }
-        }
+        Player_Stats.Gold = int.Parse(data[0]);
+        
+        Player_Stats.Bullet_Damage = int.Parse(data[1]);
+        Player_Stats.Bullet_Speed = int.Parse(data[2]);
+        Player_Stats.Mag_Capacity = int.Parse(data[3]);
+
+        Player_Stats.Highest_Round = int.Parse(data[4]);
+        Player_Stats.Highest_Zombies_Killed = int.Parse(data[5]);
+        Player_Stats.Highest_PowerUps_PickedUp = int.Parse(data[6]);
+        Player_Stats.Highest_Gold_Earned = int.Parse(data[7]);
+        
+        Player_Stats.Last_Round = int.Parse(data[8]);
+        Player_Stats.Last_Zombies_Killed = int.Parse(data[9]);
+        Player_Stats.Last_PowerUps_PickedUp = int.Parse(data[10]);
+        Player_Stats.Last_Gold_Earned = int.Parse(data[11]);
+
+        Player_Stats.Load_Locally();
     }
 
     private void Reset_File(StreamWriter clearFile)
