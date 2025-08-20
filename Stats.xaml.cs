@@ -6,8 +6,10 @@ public partial class Stats : ContentPage
 	{
 		InitializeComponent();
 
+        //Load preferences for display
         Player_Stats.Load_Locally();
 
+        //Display info
         Gold_Count.Text = Player_Stats.Gold.ToString();
         Bullet_Damage.Text = Player_Stats.Bullet_Damage.ToString();
         Bullet_Speed.Text = Player_Stats.Bullet_Speed.ToString();
@@ -29,6 +31,7 @@ public partial class Stats : ContentPage
         await Navigation.PopModalAsync(true);
     }
 
+    //Buttons to use gold to upgrade stats
     private void Buy_Bullet_Damage_Clicked(object sender, EventArgs e)
     {
         if (Player_Stats.Gold >= 100)

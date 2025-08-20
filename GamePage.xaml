@@ -5,90 +5,101 @@
              x:Class="Shooter_Game.GamePage"
              Title="GamePage"
              BackgroundImageSource="game_background.png">
-    <VerticalStackLayout>
-        <HorizontalStackLayout>
-            <VerticalStackLayout HorizontalOptions="Start">
-                <Label x:Name="Ammo_Count"
-                       Text="Ammo: /"
+    <ScrollView>
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <VerticalStackLayout HorizontalOptions="Start">
+                    <!--Display ammo and gold count-->
+                    <Label x:Name="Ammo_Count"
+                           Text="Ammo: /"
+                           IsVisible="False"
+                           TextColor="red"
+                           FontSize="25"/>
+                    <Label x:Name="Gold_Count"
+                           Text="Gold: "
+                           IsVisible="False"
+                           TextColor="Gold"
+                           FontSize="25"/>
+                </VerticalStackLayout>
+                <!--Display active perks-->
+                <Image x:Name="Instakill_Image"
+                       Source="instakill.png"
                        IsVisible="False"
-                       TextColor="red"
-                       FontSize="25"/>
-                <Label x:Name="Gold_Count"
-                       Text="Gold: "
+                       HeightRequest="40"
+                       WidthRequest="40"/>
+                <Image x:Name="Free_Fire_Img"
+                       Source="free_fire.png"
                        IsVisible="False"
-                       TextColor="Gold"
-                       FontSize="25"/>
-            </VerticalStackLayout>
-            <Image x:Name="Instakill_Image"
-                   Source="instakill.png"
-                   IsVisible="False"
-                   HeightRequest="40"
-                   WidthRequest="40"/>
-            <Image x:Name="Free_Fire_Img"
-                   Source="free_fire.png"
-                   IsVisible="False"
-                   HeightRequest="40"
-                   WidthRequest="40"/>
-            <Image x:Name="Quick_Shot"
-                   Source="quick_shots.png"
-                   IsVisible="False"
-                   HeightRequest="40"
-                   WidthRequest="40"/>
-            <Image x:Name="Double_Points_Img"
-                   Source="double_points.png"
-                   IsVisible="False"
-                   HeightRequest="40"
-                   WidthRequest="40"/>
-            <Image x:Name="Cheat_Death_Img"
-                   Source="cheat_death.png"
-                   IsVisible="False"
-                   HeightRequest="40"
-                   WidthRequest="40"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="Center"
-                               VerticalOptions="Center">
-            <VerticalStackLayout>
-                <Label x:Name="Count_Txt"
-                       Text="Game Starts in..."
-                       IsVisible="True"
+                       HeightRequest="40"
+                       WidthRequest="40"/>
+                <Image x:Name="Quick_Shot"
+                       Source="quick_shots.png"
+                       IsVisible="False"
+                       HeightRequest="40"
+                       WidthRequest="40"/>
+                <Image x:Name="Double_Points_Img"
+                       Source="double_points.png"
+                       IsVisible="False"
+                       HeightRequest="40"
+                       WidthRequest="40"/>
+                <Image x:Name="Cheat_Death_Img"
+                       Source="cheat_death.png"
+                       IsVisible="False"
+                       HeightRequest="40"
+                       WidthRequest="40"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   VerticalOptions="Center">
+                <VerticalStackLayout>
+                    <!--Countdown for game start-->
+                    <Label x:Name="Count_Txt"
+                           Text="Game Starts in..."
+                           IsVisible="True"
+                           TextColor="Red"
+                           FontFamily="PermanentMarker"
+                           FontSize="{OnPlatform Android=50, WinUI=100}"/>
+                    <Label x:Name="Start_Countdown"
+                           Text="3"
+                           IsVisible="True"
+                           TextColor="Red"
+                           FontFamily="PermanentMarker"
+                           FontSize="{OnPlatform Android=50, WinUI=100}"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <!--The play area
+                I used absolute layout because its best used for getting accurate x and y locations of objects within it-->
+                <AbsoluteLayout x:Name="Play_Area"
+                                IsVisible="False"
+                                HeightRequest="675"
+                                WidthRequest="1500"
+                                HorizontalOptions="CenterAndExpand">
+                    <!--Gestures to trigger certain functions-->
+                    <AbsoluteLayout.GestureRecognizers>
+                        <PointerGestureRecognizer PointerMoved="Follow_Pointer"/>
+                        <TapGestureRecognizer Tapped="Shoot"/>
+                        <SwipeGestureRecognizer Swiped="SwipeGestureRecognizer_Swiped"/>
+                    </AbsoluteLayout.GestureRecognizers>
+                    <!--Player model-->
+                    <Image x:Name="Player_Char"
+                           Source="walking_left.png"
+                           WidthRequest="50"
+                           HeightRequest="70"
+                           AbsoluteLayout.LayoutBounds="750,605,50,70">
+                    </Image>
+                </AbsoluteLayout>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="End"
+                                   VerticalOptions="End">
+                <!--Round count-->
+                <Label x:Name="Round_Count"
+                       Text="Round: 1"
+                       IsVisible="False"
                        TextColor="Red"
                        FontFamily="PermanentMarker"
-                       FontSize="100"/>
-                <Label x:Name="Start_Countdown"
-                       Text="3"
-                       IsVisible="True"
-                       TextColor="Red"
-                       FontFamily="PermanentMarker"
-                       FontSize="100"
-                       HorizontalOptions="Center"/>
-            </VerticalStackLayout>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout>
-            <AbsoluteLayout x:Name="Play_Area"
-                            IsVisible="False"
-                            HeightRequest="675"
-                            WidthRequest="1500"
-                            HorizontalOptions="CenterAndExpand">
-                <AbsoluteLayout.GestureRecognizers>
-                    <PointerGestureRecognizer PointerMoved="Follow_Pointer"/>
-                    <TapGestureRecognizer Tapped="Shoot"/>
-                </AbsoluteLayout.GestureRecognizers>
-                <Image x:Name="Player_Char"
-                       Source="walking_left.png"
-                       WidthRequest="50"
-                       HeightRequest="70"
-                       AbsoluteLayout.LayoutBounds="750,605,50,70">
-                </Image>
-            </AbsoluteLayout>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="End"
-                               VerticalOptions="End">
-            <Label x:Name="Round_Count"
-                   Text="Round: 1"
-                   IsVisible="False"
-                   TextColor="Red"
-                   FontFamily="PermanentMarker"
-                   FontSize="30"/>
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+                       FontSize="30"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

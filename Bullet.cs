@@ -9,10 +9,12 @@ namespace Shooter_Game
 {
     internal class Bullet
     {
+        //Creating Image for Bullet
         public Image Bullet_Img { get; private set; }
 
         public Bullet()
         {
+            //Setting outlines for the bullet image
             Bullet_Img = new Image
             {
                 Source = "bullet.png",

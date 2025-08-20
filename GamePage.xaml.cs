@@ -9,10 +9,12 @@ public partial class GamePage : ContentPage
     private IDispatcherTimer Timer;
     Random random = new Random();
 
+    //Lists to track active objects within the game
     private List<Image> Zombies_Active = new List<Image>();
     private List<Image> Bullets_Active = new List<Image>();
     private List<int> Zombies_Health = new List<int>();
 
+    //Declaring variables
     private bool Running = false;
     private bool Mag_Loaded = true;
 
@@ -21,7 +23,6 @@ public partial class GamePage : ContentPage
     private bool FreeFire_Active = false;
     private bool CheatDeath_Active = false;
     private bool QuickShots_Active = false;
-
 
     private int Count = 4;
     private int Ammo = Player_Stats.Mag_Capacity;
@@ -39,12 +40,14 @@ public partial class GamePage : ContentPage
     {
         InitializeComponent();
 
+        //Timer for countdown
         Timer = Dispatcher.CreateTimer();
         Timer.Interval = TimeSpan.FromSeconds(1);
         Timer.Tick += Countdown;
         Timer.Start();
     }
 
+    //The countdown
     private void Countdown(object sender, EventArgs e)
     {
         if (Running == false)
@@ -79,6 +82,7 @@ public partial class GamePage : ContentPage
         }
     }
 
+    //Loops to keep the game running
     private async void Game_Active()
     {
         int rand_interval;
@@ -622,5 +626,40 @@ public partial class GamePage : ContentPage
             Player_Stats.Highest_Gold_Earned = Gold_Earned;
             Player_Stats.Highest_PowerUps_PickedUp = PowerUps_PickedUp;
         }
+    }
+
+    private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+    {
+        if (!Running)
+            return;
+
+        double speed = 0;
+
+        if (e.Direction == SwipeDirection.Left)
+            speed = -5;
+        else if (e.Direction == SwipeDirection.Right)
+            speed = 5;
+
+        var position = AbsoluteLayout.GetLayoutBounds(Player_Char);
+        double char_x = position.X;
+
+        char_x += speed;
+
+        if (char_x > position.X && direction == "left")
+        {
+            Player_Char.Source = "walking_right.png";
+
+            direction = "right";
+        }
+        else if (char_x < position.X && direction == "right")
+        {
+            Player_Char.Source = "walking_left.png";
+
+            direction = "left";
+        }
+
+        char_x = Math.Clamp(char_x, 0, Play_Area.Width - Player_Char.Width);
+
+        AbsoluteLayout.SetLayoutBounds(Player_Char, new Rect(char_x, position.Y, position.Width, position.Height));
     }
 }

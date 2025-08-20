@@ -8,10 +8,12 @@ namespace Shooter_Game
 {
     internal class Free_Fire
     {
+        //Creating Image for Free Fire
         public Image FreeFire_Img { get; private set; }
 
         public Free_Fire()
         {
+            //Setting outlines for the free fire image
             FreeFire_Img = new Image
             {
                 Source = "free_fire.png",

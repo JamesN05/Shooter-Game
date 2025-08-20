@@ -4,206 +4,211 @@
              x:Class="Shooter_Game.Stats"
              Title="Stats"
              BackgroundImageSource="menu_background.jpg">
-    <VerticalStackLayout>
-        <HorizontalStackLayout>
-            <Button x:Name="Return_Button"
-                    Text="Back Home"
-                    Clicked="Return_Button_Clicked"
-                    Background="SaddleBrown"
-                    TextColor="LawnGreen"
-                    FontAttributes="Bold"
-                    FontFamily="PermanentMarker"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Label Text="Stats"
-                   FontSize="60"
-                   TextColor="Red"
-                   FontAttributes="Bold"
-                   FontFamily="PermanentMarker"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <VerticalStackLayout Margin="10">
-                <Label Text="Gold"
-                       FontSize="30"
-                       TextColor="Gold"
-                       FontAttributes="Bold"
-                       FontFamily="PermanentMarker"
-                       HorizontalOptions="Center"/>
-                <Label x:Name="Gold_Count"
-                       Text=""
-                       FontSize="25"
-                       TextColor="Gold"
-                       FontFamily="PermanentMarker"
-                       HorizontalOptions="Center"/>
-            </VerticalStackLayout>
-            <VerticalStackLayout Margin="10">
-                <Label Text="Bullet Damge"
-                       FontSize="30"
+    <ScrollView>
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Button x:Name="Return_Button"
+                        Text="Back Home"
+                        Clicked="Return_Button_Clicked"
+                        Background="SaddleBrown"
+                        TextColor="LawnGreen"
+                        FontAttributes="Bold"
+                        FontFamily="PermanentMarker"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Stats"
+                       FontSize="60"
                        TextColor="Red"
                        FontAttributes="Bold"
-                       FontFamily="PermanentMarker"
-                       HorizontalOptions="Center"/>
-                <Label x:Name="Bullet_Damage"
-                       Text=""
-                       FontSize="25"
-                       TextColor="Red"
-                       FontFamily="PermanentMarker"
-                       HorizontalOptions="Center"/>
-                <Button x:Name="Buy_Bullet_Damage"
-                        Text="Upgrade: 100 Gold"
-                        Clicked="Buy_Bullet_Damage_Clicked"
-                        Background="SaddleBrown"
-                        FontSize="20"
-                        TextColor="Gold"
-                        FontAttributes="Bold"
-                        FontFamily="PermanentMarker"
-                        HorizontalOptions="Center"/>
-            </VerticalStackLayout>
-            <VerticalStackLayout Margin="10">
-                <Label Text="Bullet Speed"
-                       FontSize="30"
-                       TextColor="DeepSkyBlue"
-                       FontAttributes="Bold"
-                       FontFamily="PermanentMarker"
-                       HorizontalOptions="Center"/>
-                <Label x:Name="Bullet_Speed"
-                       Text=""
-                       FontSize="25"
-                       TextColor="DeepSkyBlue"
-                       FontFamily="PermanentMarker"
-                       HorizontalOptions="Center"/>
-                <Button x:Name="Buy_Bullet_Speed"
-                        Text="Upgrade: 100 Gold"
-                        Clicked="Buy_Bullet_Speed_Clicked"
-                        Background="SaddleBrown"
-                        FontSize="20"
-                        TextColor="Gold"
-                        FontAttributes="Bold"
-                        FontFamily="PermanentMarker"
-                        HorizontalOptions="Center"/>
-            </VerticalStackLayout>
-            <VerticalStackLayout Margin="10">
-                <Label Text="Mag Size"
-                       FontSize="30"
-                       TextColor="Grey"
-                       FontAttributes="Bold"
-                       FontFamily="PermanentMarker"
-                       HorizontalOptions="Center"/>
-                <Label x:Name="Mag_Size"
-                       Text=""
-                       FontSize="25"
-                       TextColor="Grey"
-                       FontFamily="PermanentMarker"
-                       HorizontalOptions="Center"/>
-                <Button x:Name="Buy_Mag_Size"
-                        Text="Upgrade: 100 Gold"
-                        Clicked="Buy_Mag_Size_Clicked"
-                        Background="SaddleBrown"
-                        FontSize="20"
-                        TextColor="Gold"
-                        FontAttributes="Bold"
-                        FontFamily="PermanentMarker"
-                        HorizontalOptions="Center"/>
-            </VerticalStackLayout>
-        </HorizontalStackLayout>
-        <Grid x:Name="Stats_Grid"
-              HeightRequest="400"
-              WidthRequest="800"
-              RowDefinitions="400"
-              ColumnDefinitions="400,400"
-              HorizontalOptions="Center">
-            <Border Grid.Row="0"
-                    Grid.Column="0"
-                    BackgroundColor="SaddleBrown"
-                    Margin="4">
-                <VerticalStackLayout>
-                    <Label Text="Best Game"
+                       FontFamily="PermanentMarker"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <!--Gold Counter-->
+                <VerticalStackLayout Margin="10">
+                    <Label Text="Gold"
                            FontSize="30"
                            TextColor="Gold"
                            FontAttributes="Bold"
                            FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="10"/>
-                    <Label x:Name="Highest_Round"
-                           Text="Round: "
+                           HorizontalOptions="Center"/>
+                    <Label x:Name="Gold_Count"
+                           Text=""
                            FontSize="25"
                            TextColor="Gold"
-                           FontAttributes="Bold"
                            FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="5"/>
-                    <Label x:Name="Highest_Zombie_Kills"
-                           Text="Zombies Killed: "
-                           FontSize="25"
-                           TextColor="Gold"
-                           FontAttributes="Bold"
-                           FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="5"/>
-                    <Label x:Name="Highest_Gold_Earned"
-                           Text="Gold Earned: "
-                           FontSize="25"
-                           TextColor="Gold"
-                           FontAttributes="Bold"
-                           FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="5"/>
-                    <Label x:Name="Highest_PowerUps_PickedUp"
-                           Text="Power Ups Picked UpS: "
-                           FontSize="25"
-                           TextColor="Gold"
-                           FontAttributes="Bold"
-                           FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="5"/>
+                           HorizontalOptions="Center"/>
                 </VerticalStackLayout>
-            </Border>
-            <Border Grid.Row="0"
-                    Grid.Column="1"
-                    BackgroundColor="SaddleBrown"
-                    Margin="4">
-                <VerticalStackLayout>
-                    <Label Text="Last Game"
+                <!--Display Current stats and upgrade them-->
+                <VerticalStackLayout Margin="10">
+                    <Label Text="Bullet Damge"
                            FontSize="30"
                            TextColor="Red"
                            FontAttributes="Bold"
                            FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="10"/>
-                    <Label x:Name="Last_Round"
-                           Text="Round: "
+                           HorizontalOptions="Center"/>
+                    <Label x:Name="Bullet_Damage"
+                           Text=""
                            FontSize="25"
                            TextColor="Red"
-                           FontAttributes="Bold"
                            FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="5"/>
-                    <Label x:Name="Last_Zombie_Kills"
-                           Text="Zombies Killed: "
-                           FontSize="25"
-                           TextColor="Red"
-                           FontAttributes="Bold"
-                           FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="5"/>
-                    <Label x:Name="Last_Gold_Earned"
-                           Text="Gold Earned: "
-                           FontSize="25"
-                           TextColor="Red"
-                           FontAttributes="Bold"
-                           FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="5"/>
-                    <Label x:Name="Last_PowerUps_PickedUp"
-                           Text="Power Ups Picked UpS: "
-                           FontSize="25"
-                           TextColor="Red"
-                           FontAttributes="Bold"
-                           FontFamily="PermanentMarker"
-                           HorizontalOptions="Center"
-                           Margin="5"/>
+                           HorizontalOptions="Center"/>
+                    <Button x:Name="Buy_Bullet_Damage"
+                            Text="Upgrade: 100 Gold"
+                            Clicked="Buy_Bullet_Damage_Clicked"
+                            Background="SaddleBrown"
+                            FontSize="20"
+                            TextColor="Gold"
+                            FontAttributes="Bold"
+                            FontFamily="PermanentMarker"
+                            HorizontalOptions="Center"/>
                 </VerticalStackLayout>
-            </Border>
-        </Grid>
-    </VerticalStackLayout>
+                <VerticalStackLayout Margin="10">
+                    <Label Text="Bullet Speed"
+                           FontSize="30"
+                           TextColor="DeepSkyBlue"
+                           FontAttributes="Bold"
+                           FontFamily="PermanentMarker"
+                           HorizontalOptions="Center"/>
+                    <Label x:Name="Bullet_Speed"
+                           Text=""
+                           FontSize="25"
+                           TextColor="DeepSkyBlue"
+                           FontFamily="PermanentMarker"
+                           HorizontalOptions="Center"/>
+                    <Button x:Name="Buy_Bullet_Speed"
+                            Text="Upgrade: 100 Gold"
+                            Clicked="Buy_Bullet_Speed_Clicked"
+                            Background="SaddleBrown"
+                            FontSize="20"
+                            TextColor="Gold"
+                            FontAttributes="Bold"
+                            FontFamily="PermanentMarker"
+                            HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Margin="10">
+                    <Label Text="Mag Size"
+                           FontSize="30"
+                           TextColor="Grey"
+                           FontAttributes="Bold"
+                           FontFamily="PermanentMarker"
+                           HorizontalOptions="Center"/>
+                    <Label x:Name="Mag_Size"
+                           Text=""
+                           FontSize="25"
+                           TextColor="Grey"
+                           FontFamily="PermanentMarker"
+                           HorizontalOptions="Center"/>
+                    <Button x:Name="Buy_Mag_Size"
+                            Text="Upgrade: 100 Gold"
+                            Clicked="Buy_Mag_Size_Clicked"
+                            Background="SaddleBrown"
+                            FontSize="20"
+                            TextColor="Gold"
+                            FontAttributes="Bold"
+                            FontFamily="PermanentMarker"
+                            HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <!--Display highest round game and last game-->
+            <Grid x:Name="Stats_Grid"
+                  HeightRequest="400"
+                  WidthRequest="800"
+                  RowDefinitions="400"
+                  ColumnDefinitions="400,400"
+                  HorizontalOptions="Center">
+                <Border Grid.Row="0"
+                        Grid.Column="0"
+                        BackgroundColor="SaddleBrown"
+                        Margin="4">
+                    <VerticalStackLayout>
+                        <Label Text="Best Game"
+                               FontSize="30"
+                               TextColor="Gold"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="10"/>
+                        <Label x:Name="Highest_Round"
+                               Text="Round: "
+                               FontSize="25"
+                               TextColor="Gold"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="5"/>
+                        <Label x:Name="Highest_Zombie_Kills"
+                               Text="Zombies Killed: "
+                               FontSize="25"
+                               TextColor="Gold"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="5"/>
+                        <Label x:Name="Highest_Gold_Earned"
+                               Text="Gold Earned: "
+                               FontSize="25"
+                               TextColor="Gold"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="5"/>
+                        <Label x:Name="Highest_PowerUps_PickedUp"
+                               Text="Power Ups Picked UpS: "
+                               FontSize="25"
+                               TextColor="Gold"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="5"/>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="SaddleBrown"
+                        Margin="4">
+                    <VerticalStackLayout>
+                        <Label Text="Last Game"
+                               FontSize="30"
+                               TextColor="Red"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="10"/>
+                        <Label x:Name="Last_Round"
+                               Text="Round: "
+                               FontSize="25"
+                               TextColor="Red"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="5"/>
+                        <Label x:Name="Last_Zombie_Kills"
+                               Text="Zombies Killed: "
+                               FontSize="25"
+                               TextColor="Red"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="5"/>
+                        <Label x:Name="Last_Gold_Earned"
+                               Text="Gold Earned: "
+                               FontSize="25"
+                               TextColor="Red"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="5"/>
+                        <Label x:Name="Last_PowerUps_PickedUp"
+                               Text="Power Ups Picked UpS: "
+                               FontSize="25"
+                               TextColor="Red"
+                               FontAttributes="Bold"
+                               FontFamily="PermanentMarker"
+                               HorizontalOptions="Center"
+                               Margin="5"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

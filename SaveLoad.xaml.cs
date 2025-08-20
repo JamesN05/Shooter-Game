@@ -12,15 +12,20 @@ public partial class SaveLoad : ContentPage
         await Navigation.PopModalAsync(true);
     }
 
+    //The colour of each button changes on click for a second
+    //Button to save to file
     private async void Save1_Button_Clicked(object sender, EventArgs e)
     {
         Save1_Button.Background = new SolidColorBrush(Colors.DarkRed);
 
+        //Set the path the file shall be created and overwritten in
         string filePath = Path.Combine(FileSystem.AppDataDirectory, "Save1.txt");
+        //Create or set output file
         StreamWriter outputFile = new StreamWriter(filePath);
 
         Save_to_File(outputFile);
 
+        //Close file
         outputFile.Close();
 
         await Task.Delay(1000);
@@ -28,6 +33,7 @@ public partial class SaveLoad : ContentPage
         Save1_Button.Background = new SolidColorBrush(Colors.LawnGreen);
     }
 
+    //Button to load from file
     private async void Load1_Button_Clicked(object sender, EventArgs e)
     {
         Load1_Button.Background = new SolidColorBrush(Colors.DarkRed);
@@ -44,6 +50,7 @@ public partial class SaveLoad : ContentPage
         Load1_Button.Background = new SolidColorBrush(Colors.LawnGreen);
     }
 
+    //Button to clear a file
     private async void Delete1_Button_Clicked(object sender, EventArgs e)
     {
         Delete1_Button.Background = new SolidColorBrush(Colors.DarkRed);
@@ -252,6 +259,7 @@ public partial class SaveLoad : ContentPage
         Save1_Button.Background = new SolidColorBrush(Colors.LawnGreen);
     }
 
+    //Function to write each bit of information from Player_Stats to file
     private void Save_to_File(StreamWriter outputFile)
     {
         outputFile.WriteLine(Player_Stats.Gold);
@@ -271,17 +279,22 @@ public partial class SaveLoad : ContentPage
         outputFile.WriteLine(Player_Stats.Last_Gold_Earned);
     }
 
+    //Function to load stats stored on file to Player_Stats
     private void Load_from_File(StreamReader inputFile)
     {
+        //Create a list to read info into
         List<string> data = new List<string>();
 
+        //For when to read next line
         string line = "";
 
+        //Read each line into a new variable into the list
         while ((line = inputFile.ReadLine()) != null)
         {
             data.Add((line));
         }
 
+        //Save to Player_stats
         Player_Stats.Gold = int.Parse(data[0]);
         
         Player_Stats.Bullet_Damage = int.Parse(data[1]);
@@ -298,9 +311,12 @@ public partial class SaveLoad : ContentPage
         Player_Stats.Last_PowerUps_PickedUp = int.Parse(data[10]);
         Player_Stats.Last_Gold_Earned = int.Parse(data[11]);
 
+        //Save and load to and from preferences
+        Player_Stats.Save_Locally();
         Player_Stats.Load_Locally();
     }
 
+    //Function to reset the information stored on file to default state
     private void Reset_File(StreamWriter clearFile)
     {
         clearFile.WriteLine(0);

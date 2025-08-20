@@ -8,10 +8,12 @@ namespace Shooter_Game
 {
     internal class Nuke
     {
+        //Creating Image for Nuke
         public Image Nuke_Img { get; private set; }
 
         public Nuke()
         {
+            //Setting outlines for the nuke image
             Nuke_Img = new Image
             {
                 Source = "nuke.png",

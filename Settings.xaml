@@ -5,6 +5,7 @@
              Title="Settings"
              BackgroundImageSource="menu_background.jpg">
     <VerticalStackLayout>
+        <!--Button to go back to starting screen-->
         <HorizontalStackLayout>
             <Button x:Name="Return_Button"
                     Text="Back Home"
@@ -28,6 +29,7 @@
                    FontAttributes="Bold"
                    FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
+        <!--Button to clear saved stats in preferences-->
         <HorizontalStackLayout HorizontalOptions="Center">
             <Button x:Name="Local_Save_Button"
                     Text="Delete Local Data"
@@ -46,6 +48,7 @@
                    FontAttributes="Bold"
                    FontFamily="PermanentMarker"/>
         </HorizontalStackLayout>
+        <!--Button to hide and show the tips on the starting screen-->
         <HorizontalStackLayout HorizontalOptions="Center">
             <Button x:Name="Tips_Button"
                     Text="On"

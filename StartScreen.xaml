@@ -5,7 +5,9 @@
              BackgroundImageSource="menu_background.jpg">
     <ScrollView>
         <VerticalStackLayout>
+            <!--Spacing-->
             <HorizontalStackLayout Margin="20"/>
+            <!--Title-->
             <HorizontalStackLayout HorizontalOptions="Center"
                                    Margin="40">
                 <Label Text="Last Stand"
@@ -15,18 +17,20 @@
                        FontFamily="PermanentMarker"/>
             </HorizontalStackLayout>
             <HorizontalStackLayout Margin="30"/>
+            <!--Buttons to traverse the app-->
             <HorizontalStackLayout HorizontalOptions="Center"
                                    VerticalOptions="Center">
+                <!--OnPlatform allows for seperate values for different platforms-->
                 <Button x:Name="Settings_Button"
                         Text="⚙"
                         Clicked="Settings_Button_Clicked"
-                        FontSize="25"
+                        FontSize="{OnPlatform Android=15, WinUI=25}"
                         Margin="5"
                         Background="SaddleBrown"/>
                 <Button x:Name="SaveLoad_Button"
                         Text="Save/Load"
                         Clicked="SaveLoad_Button_Clicked"
-                        FontSize="25"
+                        FontSize="{OnPlatform Android=15, WinUI=25}"
                         Margin="5"
                         Background="SaddleBrown"
                         TextColor="LawnGreen"
@@ -35,7 +39,7 @@
                 <Button x:Name="Start_Button"
                         Text="Start Game"
                         Clicked="Start_Button_Clicked"
-                        FontSize="25"
+                        FontSize="{OnPlatform Android=15, WinUI=25}"
                         Margin="5"
                         Background="SaddleBrown"
                         TextColor="LawnGreen"
@@ -44,25 +48,14 @@
                 <Button x:Name="Stats_Button"
                         Text="Stats"
                         Clicked="Stats_Button_Clicked"
-                        FontSize="25"
+                        FontSize="{OnPlatform Android=15, WinUI=25}"
                         Margin="5"
                         Background="SaddleBrown"
                         TextColor="LawnGreen"
                         FontAttributes="Bold"
                         FontFamily="PermanentMarker"/>
             </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center"
-                                   VerticalOptions="Center">
-                <Button x:Name="Catalogue_Button"
-                        Text="Power-Ups Catalogue" 
-                        Clicked="Catalogue_Button_Clicked"
-                        FontSize="25"
-                        Margin="5"
-                        Background="SaddleBrown"
-                        TextColor="LawnGreen"
-                        FontAttributes="Bold"
-                        FontFamily="PermanentMarker"/>
-            </HorizontalStackLayout>
+            <!--The tips section-->
             <HorizontalStackLayout Margin="70"/>
             <Grid x:Name="Tips_Grid"
                   HeightRequest="160"

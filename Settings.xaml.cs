@@ -2,8 +2,10 @@ namespace Shooter_Game;
 
 public partial class Settings : ContentPage
 {
+    //Storing starting screen as a variable so the ui can change from this page
     private MainPage MainPage;
 
+    //Stored publicly for use in starting screen page
     public bool Tips_On;
 
 	public Settings(MainPage mainPage)
@@ -12,30 +14,19 @@ public partial class Settings : ContentPage
 
         MainPage = mainPage;
 
+        //Stored in preferences for use in starting screen
         Tips_On = Preferences.Get("Tips_On", true);
         Tips_Button_Ui();
 	}
 
+    //Go back to starting screen
     private async void Return_Button_Clicked(object sender, EventArgs e)
     {
         await Navigation.PopModalAsync(true);
     }
 
-    private void Small_Button_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void Medium_Button_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
-    private void Large_Button_Clicked(object sender, EventArgs e)
-    {
-
-    }
-
+    //Buttons change colour for 1 second before going back to normal upon being clicked
+    //Clears stats stored in preferences
     private async void Local_Save_Button_Clicked(object sender, EventArgs e)
     {
         Local_Save_Button.Background = new SolidColorBrush(Colors.DarkRed);
@@ -58,11 +49,13 @@ public partial class Settings : ContentPage
 
         Player_Stats.Save_Locally();
 
+        //Wait for 1 secnd
         await Task.Delay(1000);
 
         Local_Save_Button.Background = new SolidColorBrush(Colors.SaddleBrown);
     }
 
+    //Toggle tips on and off
     private void Tips_Button_Clicked(object sender, EventArgs e)
     {
         Tips_On = !Tips_On;
@@ -72,6 +65,7 @@ public partial class Settings : ContentPage
         Tips_Button_Ui();
     }
 
+    //Change UI for button based on it being on or off
     private void Tips_Button_Ui()
     {
         if (!Tips_On)

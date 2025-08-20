@@ -2,22 +2,27 @@
 {
     public partial class MainPage : ContentPage
     {
+        //Tips_on is stored in preferences via the settings page
         bool Tips_On = Preferences.Get("Tips_On", true);
 
         public MainPage()
         {
             InitializeComponent();
 
+            //Load player stats from preferences upon app start up
             Player_Stats.Load_Locally();
 
+            //Toggle tip display from settings
             if (!Tips_On)
             {
                 Tips_Grid.IsVisible = false;
             }
 
+            //Call tips method
             Tip_Display();
         }
 
+        //Methods for traversing the app
         private async void Settings_Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new Settings(this));
@@ -38,19 +43,17 @@
             await Navigation.PushModalAsync(new Stats(), true);
         }
 
-        private async void Catalogue_Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new Catalogue(), true);
-        }
-
+        //Method for generating random tips
         private async void Tip_Display()
         {
             Random random = new Random();
             int rand = 1;
 
+            //Infinite while loop
             while (true)
             {
-                rand = random.Next(1, 7);
+                //Between 1 and 8
+                rand = random.Next(1, 9);
 
                 if (rand == 1)
                 {
@@ -82,7 +85,18 @@
                     Title_Tip.Text = "Unhappy with Something in the Game?";
                     Tip_Text.Text = "Go to settings to adjust the game ui and settings.";
                 }
+                else if (rand == 7)
+                {
+                    Title_Tip.Text = "Save/Load";
+                    Tip_Text.Text = "You can save, load and delete save data in the save/load page.";
+                }
+                else if (rand == 8)
+                {
+                    Title_Tip.Text = "Controls";
+                    Tip_Text.Text = "You use your mouse to move on windows while you swipe left and right on your screen on android.";
+                }
 
+                //Wait 10 seconds before changing
                 await Task.Delay(10000);
             }
         }

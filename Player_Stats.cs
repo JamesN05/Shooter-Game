@@ -8,6 +8,7 @@ namespace Shooter_Game
 {
     class Player_Stats
     {
+        //Storing values for the players stats
         public static int Gold {  get; set; } = 0;
 
         public static int Bullet_Damage { get; set; } = 20;
@@ -24,6 +25,7 @@ namespace Shooter_Game
         public static int Last_PowerUps_PickedUp { get; set; } = 0;
         public static int Last_Gold_Earned { get; set; } = 0;
 
+        //Method for saving players stats to preferences
         public static void Save_Locally()
         {
             Preferences.Set(nameof(Gold), Gold);
@@ -43,6 +45,7 @@ namespace Shooter_Game
             Preferences.Set(nameof(Last_Gold_Earned), Last_Gold_Earned);
         }
 
+        //Method for loading players stats from preferences
         public static void Load_Locally()
         {
             Gold = Preferences.Get(nameof(Gold), 0);
